@@ -21,8 +21,8 @@ app = Flask(__name__)
 CORS(app)  # Allow cross-origin requests
 
 # Serial port configuration for windows use com3 or com4
-SERIAL_PORT = '/dev/cu.usbmodem1101'
-BAUD_RATE = 9600
+SERIAL_PORT = 'com3'
+BAUD_RATE = 9600s
 
 # Global variables to store latest readings
 sensor_data = {
