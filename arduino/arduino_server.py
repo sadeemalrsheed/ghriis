@@ -143,18 +143,18 @@ def process_serial_data(line):
     
     logger.info(f"Received: {line}")
     
-    # Extract moisture value
-    moisture_match = re.search(r'Moisture: (\d+)', line)
+    # Correct typo to match both "Moisture" and "Mositure"
+    moisture_match = re.search(r'(?:Moisture|Mositure)\s*[:=]\s*(\d+)', line)
     if moisture_match:
         sensor_data["moisture"] = int(moisture_match.group(1))
     
     # Extract raw value
-    raw_match = re.search(r'Raw: (\d+)', line)
+    raw_match = re.search(r'Raw\s*[:=]\s*(\d+)', line)
     if raw_match:
         sensor_data["raw"] = int(raw_match.group(1))
     
     # Extract relay status
-    relay_match = re.search(r'Relay: (ON|OFF)', line)
+    relay_match = re.search(r'Relay\s*[:=]\s*(ON|OFF)', line)
     if relay_match:
         sensor_data["relay"] = relay_match.group(1)
     
