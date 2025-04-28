@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Monitor</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h1 {
+            color: #2563eb;
+            font-size: 28px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .connected {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .disconnected {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .reconnecting {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-dot.green {
+            background-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+        
+        .status-dot.red {
+            background-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+        
+        .status-dot.yellow {
+            background-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+        }
+        
+        .status-dot.blink {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .moisture-card {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .data-card {
+            grid-column: 2;
+        }
+        
+        .moisture-display {
+            width: 240px;
+            height: 240px;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .moisture-gauge {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#3b82f6 0% var(--moisture-value), #e5e7eb var(--moisture-value) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s ease;
+        }
+        
+        .moisture-gauge::after {
+            content: "";
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .moisture-value {
+            position: relative;
+            z-index: 10;
+            font-size: 36px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .moisture-label {
+            margin-top: 5px;
+            font-size: 18px;
+            color: #6b7280;
+        }
+        
+        .moisture-status {
+            margin-top: 10px;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .moisture-status.wet {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .moisture-status.dry {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 8px;
+            text-align: left;
+        }
+        
+        th {
+            font-weight: 500;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        td {
+            font-weight: 500;
+        }
+        
+        tr:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .log-section {
+            grid-column: 1 / span 2;
+            margin-top: 20px;
+        }
+        
+        .log-container {
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .log-entry {
+            margin-bottom: 4px;
+            display: flex;
+        }
+        
+        .log-timestamp {
+            color: #94a3b8;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .log-message {
+            flex-grow: 1;
+        }
+        
+        .log-message.error {
+            color: #f87171;
+        }
+        
+        .log-message.warning {
+            color: #facc15;
+        }
+        
+        .log-message.info {
+            color: #60a5fa;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .primary-button {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .primary-button:hover {
+            background-color: #2563eb;
+        }
+        
+        .secondary-button {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+        
+        .secondary-button:hover {
+            background-color: #d1d5db;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .moisture-card, .data-card, .log-section {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Soil Moisture Monitor</h1>
+            <div id="connection-status" class="status-indicator reconnecting">
+                <div class="status-dot yellow blink"></div>
+                <span>Initializing...</span>
+            </div>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card moisture-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Moisture Level</h2>
+                        <p class="card-subtitle">Current soil moisture reading</p>
+                    </div>
+                </div>
+                
+                <div class="moisture-display">
+                    <div class="moisture-gauge" style="--moisture-value: 0%;">
+                        <div class="moisture-value">0%</div>
+                    </div>
+                </div>
+                
+                <div id="moisture-status" class="moisture-status dry">
+                    Soil is dry - Watering recommended
+                </div>
+            </div>
+            
+            <div class="card data-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Sensor Data</h2>
+                        <p class="card-subtitle">Latest readings from the Arduino</p>
+                    </div>
+                </div>
+                
+                <table>
+                    <tr>
+                        <th>Raw Sensor Value</th>
+                        <td id="raw-value">--</td>
+                    </tr>
+                    <tr>
+                        <th>Moisture Percentage</th>
+                        <td id="moisture-percent">--</td>
+                    </tr>
+                    <tr>
+                        <th>Relay Status</th>
+                        <td id="relay-status">--</td>
+                    </tr>
+                    <tr>
+                        <th>Last Update</th>
+                        <td id="last-update">--</td>
+                    </tr>
+                    <tr>
+                        <th>Arduino Status</th>
+                        <td id="arduino-status">Unknown</td>
+                    </tr>
+                    <tr>
+                        <th>Reconnect Attempts</th>
+                        <td id="reconnect-attempts">0</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="card log-section">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">System Log</h2>
+                        <p class="card-subtitle">Recent events and errors</p>
+                    </div>
+                </div>
+                
+                <div class="log-container" id="log-container">
+                    <!-- Logs will be inserted here -->
+                </div>
+                
+                <div class="buttons">
+                    <button id="clear-log" class="secondary-button">Clear Log</button>
+                    <a href="/history" class="secondary-button">View History</a>
+                    <button id="refresh-button" class="primary-button">Refresh Connection</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_VERSION = 'v1';
+        const API_BASE_URL = `/api/${API_VERSION}`;
+        const MOISTURE_THRESHOLD = 20;
+        const UPDATE_INTERVAL = 1000;
+        const MAX_LOG_ENTRIES = 100;
+        
+        // State
+        let isConnected = false;
+        let lastTimestamp = 0;
+        let failedFetchCount = 0;
+        let updateTimer = null;
+        let logEntries = [];
+        
+        // Elements
+        const elements = {
+            connectionStatus: document.getElementById('connection-status'),
+            moistureGauge: document.querySelector('.moisture-gauge'),
+            moistureValue: document.querySelector('.moisture-value'),
+            moistureStatus: document.getElementById('moisture-status'),
+            rawValue: document.getElementById('raw-value'),
+            moisturePercent: document.getElementById('moisture-percent'),
+            relayStatus: document.getElementById('relay-status'),
+            lastUpdate: document.getElementById('last-update'),
+            arduinoStatus: document.getElementById('arduino-status'),
+            reconnectAttempts: document.getElementById('reconnect-attempts'),
+            logContainer: document.getElementById('log-container'),
+            refreshButton: document.getElementById('refresh-button'),
+            clearLogButton: document.getElementById('clear-log')
+        };
+        
+        // Attach event listeners
+        elements.refreshButton.addEventListener('click', () => {
+            addLogEntry('Manual refresh requested', 'info');
+            updateConnectionStatus('reconnecting', 'Reconnecting...');
+            location.reload();
+        });
+        
+        elements.clearLogButton.addEventListener('click', () => {
+            logEntries = [];
+            renderLogEntries();
+        });
+        
+        // Helper functions
+        function formatTime(timestamp) {
+            if (!timestamp) return '--';
+            return new Date(timestamp * 1000).toLocaleTimeString();
+        }
+        
+        function updateConnectionStatus(state, message) {
+            elements.connectionStatus.className = `status-indicator ${state}`;
+            elements.connectionStatus.innerHTML = `
+                <div class="status-dot ${state === 'connected' ? 'green' : state === 'disconnected' ? 'red' : 'yellow'} ${state !== 'connected' ? 'blink' : ''}"></div>
+                <span>${message}</span>
+            `;
+        }
+        
+        function updateMoistureDisplay(value) {
+            elements.moistureGauge.style.setProperty('--moisture-value', `${value}%`);
+            elements.moistureValue.textContent = `${value}%`;
+            elements.moisturePercent.textContent = `${value}%`;
+            
+            if (value < MOISTURE_THRESHOLD) {
+                elements.moistureStatus.textContent = "Soil is dry - Watering recommended";
+                elements.moistureStatus.className = "moisture-status dry";
+            } else {
+                elements.moistureStatus.textContent = "Soil moisture is good";
+                elements.moistureStatus.className = "moisture-status wet";
+            }
+        }
+        
+        function addLogEntry(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            logEntries.unshift({
+                timestamp,
+                message,
+                type
+            });
+            
+            if (logEntries.length > MAX_LOG_ENTRIES) {
+                logEntries.pop();
+            }
+            
+            renderLogEntries();
+        }
+        
+        function renderLogEntries() {
+            elements.logContainer.innerHTML = logEntries.map(entry => `
+                <div class="log-entry">
+                    <span class="log-timestamp">${entry.timestamp}</span>
+                    <span class="log-message ${entry.type}">${entry.message}</span>
+                </div>
+            `).join('');
+        }
+        
+        // API functions
+        async function fetchData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/data`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                failedFetchCount = 0;
+                
+                // Process status data
+                if (data.status) {
+                    const { connected, last_error, last_successful_read, reconnect_attempts } = data.status;
+                    
+                    // Update connection status
+                    if (connected) {
+                        if (!isConnected) {
+                            addLogEntry('Arduino connection established', 'info');
+                            isConnected = true;
+                        }
+                        updateConnectionStatus('connected', 'Connected to Arduino');
+                        elements.arduinoStatus.textContent = 'Connected';
+                        elements.arduinoStatus.style.color = '#166534';
+                    } else {
+                        if (isConnected) {
+                            addLogEntry(`Arduino disconnected: ${last_error}`, 'error');
+                            isConnected = false;
+                        }
+                        updateConnectionStatus('disconnected', 'Arduino disconnected');
+                        elements.arduinoStatus.textContent = 'Disconnected';
+                        elements.arduinoStatus.style.color = '#991b1b';
+                    }
+                    
+                    elements.reconnectAttempts.textContent = reconnect_attempts;
+                }
+                
+                // Process sensor data
+                if (data.sensor) {
+                    const { moisture, raw, relay, timestamp } = data.sensor;
+                    
+                    updateMoistureDisplay(moisture);
+                    elements.rawValue.textContent = raw;
+                    elements.relayStatus.textContent = relay;
+                    
+                    if (timestamp !== lastTimestamp && timestamp > 0) {
+                        lastTimestamp = timestamp;
+                        elements.lastUpdate.textContent = formatTime(timestamp);
+                    }
+                }
+                
+            } catch (error) {
+                failedFetchCount++;
+                console.error('Error fetching data:', error);
+                
+                if (failedFetchCount === 1) {
+                    addLogEntry(`Server connection error: ${error.message}`, 'error');
+                    updateConnectionStatus('disconnected', 'Server connection error');
+                } else if (failedFetchCount % 10 === 0) {
+                    addLogEntry(`Still trying to connect to server (${failedFetchCount} attempts)`, 'warning');
+                }
+            }
+            
+            // Schedule next update
+            const interval = failedFetchCount > 5 ? 2000 : UPDATE_INTERVAL;
+            updateTimer = setTimeout(fetchData, interval);
+        }
+        
+        // Initialize
+        function initialize() {
+            addLogEntry('Application started', 'info');
+            updateConnectionStatus('reconnecting', 'Connecting to server...');
+            fetchData();
+        }
+        
+        // Start the application when DOM is ready
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>

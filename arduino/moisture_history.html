@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture History</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h1 {
+            color: #2563eb;
+            font-size: 28px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .connected {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .disconnected {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .reconnecting {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-dot.green {
+            background-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+        
+        .status-dot.red {
+            background-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+        
+        .status-dot.yellow {
+            background-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+        }
+        
+        .status-dot.blink {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .data-table th {
+            background-color: #f8fafc;
+            font-weight: 500;
+            color: #6b7280;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .primary-button {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .primary-button:hover {
+            background-color: #2563eb;
+        }
+        
+        .secondary-button {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+        
+        .secondary-button:hover {
+            background-color: #d1d5db;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 0;
+            color: #6b7280;
+        }
+        
+        .empty-state p {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+            
+            .data-table-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Soil Moisture History</h1>
+            <div id="connection-status" class="status-indicator reconnecting">
+                <div class="status-dot yellow blink"></div>
+                <span>Initializing...</span>
+            </div>
+        </header>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">24-Hour Moisture history</h2>
+                    <p class="card-subtitle">Moisture readings for the 24 hours</p>
+                </div>
+            </div>
+            
+            <div class="chart-container" id="chart-container">
+                <!-- Chart will be drawn here -->
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Historical Data</h2>
+                    <p class="card-subtitle">Recorded readings for the 24 hours</p>
+                </div>
+                <div>
+                    <span id="data-count">0 records</span>
+                </div>
+            </div>
+            
+            <div class="data-table-container">
+                <table class="data-table" id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Moisture %</th>
+                            <th>Raw Value</th>
+                            <th>Relay Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <p>Loading data...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="/" class="secondary-button">Back to Dashboard</a>
+            <button id="refresh-button" class="primary-button">Refresh Data</button>
+        </div>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+
+    <!-- Import Chart.js for our graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.28.0/dist/date-fns.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script>
+        // Configuration
+        const API_VERSION = 'v1';
+        const API_BASE_URL = `/api/${API_VERSION}`;
+        const MOISTURE_THRESHOLD = 20;
+        const UPDATE_INTERVAL = 30000; // Update every 30 seconds
+        
+        // State
+        let chart = null;
+        let historyData = [];
+        let failedFetchCount = 0;
+        let updateTimer = null;
+        
+        // Elements
+        const elements = {
+            connectionStatus: document.getElementById('connection-status'),
+            chartContainer: document.getElementById('chart-container'),
+            tableBody: document.getElementById('table-body'),
+            dataCount: document.getElementById('data-count'),
+            refreshButton: document.getElementById('refresh-button')
+        };
+        
+        // Attach event listeners
+        elements.refreshButton.addEventListener('click', fetchHistoryData);
+        
+        // Helper functions
+        function formatDateTime(timestamp) {
+            if (!timestamp) return '--';
+            const date = new Date(timestamp * 1000);
+            return date.toLocaleString();
+        }
+        
+        function formatTime(timestamp) {
+            if (!timestamp) return '--';
+            const date = new Date(timestamp * 1000);
+            return date.toLocaleTimeString();
+        }
+        
+        function updateConnectionStatus(state, message) {
+            elements.connectionStatus.className = `status-indicator ${state}`;
+            elements.connectionStatus.innerHTML = `
+                <div class="status-dot ${state === 'connected' ? 'green' : state === 'disconnected' ? 'red' : 'yellow'} ${state !== 'connected' ? 'blink' : ''}"></div>
+                <span>${message}</span>
+            `;
+        }
+        
+        function renderHistoryTable() {
+            if (historyData.length === 0) {
+                elements.tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="empty-state">
+                            <p>No data available for the past 24 hours</p>
+                        </td>
+                    </tr>
+                `;
+                elements.dataCount.textContent = '0 records';
+                return;
+            }
+            
+            // Sort data by timestamp (newest first)
+            const sortedData = [...historyData].sort((a, b) => b.timestamp - a.timestamp);
+            
+            elements.tableBody.innerHTML = sortedData.map(item => `
+                <tr>
+                    <td>${formatDateTime(item.timestamp)}</td>
+                    <td>${item.moisture}%</td>
+                    <td>${item.raw}</td>
+                    <td>${item.relay}</td>
+                </tr>
+            `).join('');
+            
+            elements.dataCount.textContent = `${historyData.length} records`;
+        }
+        
+        function renderChart() {
+            if (historyData.length === 0) {
+                elements.chartContainer.innerHTML = `
+                    <div class="empty-state">
+                        <p>No data available for the past 24 hours</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort data by timestamp (oldest first for the chart)
+            const sortedData = [...historyData].sort((a, b) => a.timestamp - b.timestamp);
+            
+            const timestamps = sortedData.map(item => new Date(item.timestamp * 1000));
+            const moistureValues = sortedData.map(item => item.moisture);
+            
+            // Destroy previous chart if it exists
+            if (chart) {
+                chart.destroy();
+            }
+            
+            // Create a canvas for the chart
+            elements.chartContainer.innerHTML = `<canvas id="moisture-chart"></canvas>`;
+            const ctx = document.getElementById('moisture-chart').getContext('2d');
+            
+            // Create the chart
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timestamps,
+                    datasets: [{
+                        label: 'Moisture (%)',
+                        data: moistureValues,
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'hour',
+                                displayFormats: {
+                                    hour: 'HH:mm'
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Moisture (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    const date = new Date(context[0].parsed.x);
+                                    return date.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // API functions
+        async function fetchHistoryData() {
+            try {
+                updateConnectionStatus('reconnecting', 'Fetching history data...');
+                
+                const response = await fetch(`${API_BASE_URL}/history`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                failedFetchCount = 0;
+                
+                historyData = data.history || [];
+                
+                // Render the history data
+                renderHistoryTable();
+                renderChart();
+                
+                updateConnectionStatus('connected', 'Data loaded successfully');
+                
+                // Schedule next update
+                clearTimeout(updateTimer);
+                updateTimer = setTimeout(fetchHistoryData, UPDATE_INTERVAL);
+                
+            } catch (error) {
+                failedFetchCount++;
+                console.error('Error fetching history data:', error);
+                
+                updateConnectionStatus('disconnected', 'Failed to load data');
+                
+                if (elements.tableBody.querySelector('.empty-state') === null) {
+                    elements.tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <p>Error loading data: ${error.message}</p>
+                            </td>
+                        </tr>
+                    `;
+                }
+                
+                // Schedule retry
+                const retryDelay = failedFetchCount > 3 ? 10000 : 5000;
+                clearTimeout(updateTimer);
+                updateTimer = setTimeout(fetchHistoryData, retryDelay);
+            }
+        }
+        
+        // Initialize
+        function initialize() {
+            updateConnectionStatus('reconnecting', 'Loading history data...');
+            fetchHistoryData();
+        }
+        
+        // Start the application when DOM is ready
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>

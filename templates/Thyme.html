@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thyme | Green Glow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="plants.css" />
+  <style>
+    .section-title {
+      transition: transform 0.3s ease-in-out;
+    }
+    .section-title:hover {
+      transform: scale(1.05);
+    }
+    .icon-hover:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <header class="text-center py-10 bg-green-100 shadow">
+    <h1 class="text-4xl font-bold text-green-700">Thyme | الزعتر</h1>
+    <p class="text-gray-600 mt-2">Discover its aromatic value, uses, and care instructions</p>
+  </header>
+
+  <main class="px-6 py-12 max-w-6xl mx-auto space-y-16">
+
+    <!-- Section 1: Image and Name -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 flex flex-col md:flex-row gap-8 items-center">
+      <img src="{{ url_for('static', filename='northern-plant3.jpg') }}" alt="Thyme" class="w-full md:w-1/2 rounded-2xl shadow-md object-cover h-72"/>
+      <div class="flex-1 space-y-4 text-center md:text-left">
+        <h2 class="text-3xl font-bold text-green-700 section-title">Thyme</h2>
+        <h3 class="text-xl text-gray-500 font-semibold">الزعتر</h3>
+      </div>
+    </section>
+    
+
+    <!-- Section 2: Basic Information -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-info-circle text-green-600 mr-2"></i> Basic Information
+      </h2>
+      <p class="text-gray-700">
+        Thyme is a small, hardy herb widely used in Mediterranean cuisine and herbal medicine. It is known for its strong aroma and antimicrobial properties.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Type:</strong> Herb</li>
+        <li><strong>Lifespan:</strong> Perennial (up to 6 years)</li>
+        <li><strong>Height:</strong> 20–30 cm</li>
+        <li><strong>Blooming Season:</strong> Late Spring to Summer</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Care Difficulty & Benefits -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-cogs text-green-600 mr-2"></i> Care & Benefits
+      </h2>
+      <p class="text-gray-700">
+        Thyme is easy to grow and highly drought-tolerant. It adds flavor to dishes and supports health with its antimicrobial and antioxidant properties.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Care Level:</strong> Easy</li>
+        <li><strong>Benefits:</strong> Culinary use, immune support, air purification</li>
+        <li><strong>Common Use:</strong> Cooking, teas, essential oils</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Growing Conditions -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-leaf text-green-600 mr-2"></i> Growing Conditions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+        <div class="space-y-4">
+          <p><i class="fas fa-sun text-yellow-500 mr-2 icon-hover"></i><strong>Sunlight:</strong> Full Sun</p>
+          <p><i class="fas fa-cloud-sun text-blue-400 mr-2 icon-hover"></i><strong>Climate:</strong> Mild to Warm</p>
+          <p><i class="fas fa-thermometer-half text-orange-500 mr-2 icon-hover"></i><strong>Temperature Tolerance:</strong> Down to -10°C</p>
+        </div>
+        <div class="space-y-4">
+          <p><i class="fas fa-seedling text-green-500 mr-2 icon-hover"></i><strong>Soil:</strong> Sandy or rocky, well-drained</p>
+          <p><i class="fas fa-home text-purple-500 mr-2 icon-hover"></i><strong>Placement:</strong> Outdoor or balcony</p>
+          <p><i class="fas fa-water text-blue-500 mr-2 icon-hover"></i><strong>Watering:</strong> Low (allow soil to dry)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Medicinal & Special Properties -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-heartbeat text-red-500 mr-2"></i> Medicinal & Special Properties
+      </h2>
+      <p class="text-gray-700">
+        Thyme has been used for centuries as a remedy for respiratory and digestive issues. It contains thymol, a powerful compound known for its antiseptic and anti-inflammatory properties.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Medicinal Uses:</strong> Cough relief, sore throat, digestion aid</li>
+        <li><strong>Traditional Use:</strong> Used in herbal teas and natural remedies</li>
+        <li><strong>Essential Oils:</strong> Antibacterial and antifungal</li>
+      </ul>
+    </section>
+
+    <!-- Back Button -->
+    <div class="text-center">
+      <a href="{{ url_for('show_plants') }}" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition">
+        ← Back to Plants      
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-white shadow-inner py-8 text-center text-sm text-gray-500">
+    &copy; 2025 Green Glow | All rights reserved.
+  </footer>
+
+</body>
+</html>

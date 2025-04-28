@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nerium Oleander | Green Glow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="plants.css" />
+  <style>
+    /* Custom Styles for Smooth Transitions */
+    .section-title {
+      transition: transform 0.3s ease-in-out;
+    }
+    .section-title:hover {
+      transform: scale(1.05);
+    }
+    .icon-hover:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <header class="text-center py-10 bg-green-100 shadow">
+    <h1 class="text-4xl font-bold text-green-700">Nerium Oleander | الدفلى</h1>
+    <p class="text-gray-600 mt-2">Learn about its characteristics, care needs, and ideal conditions</p>
+  </header>
+
+  <main class="px-6 py-12 max-w-6xl mx-auto space-y-16">
+
+    <!-- Section 1: Image and Name -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 flex flex-col md:flex-row gap-8 items-center">
+      <img src="{{ url_for('static', filename='central-plant1.jpg') }}" alt="Nerium Oleander" class="w-full md:w-1/2 rounded-2xl shadow-md object-cover h-72"/>
+      <div class="flex-1 space-y-4 text-center md:text-left">
+        <h2 class="text-3xl font-bold text-green-700 section-title">Nerium Oleander</h2>
+        <h3 class="text-xl text-gray-500 font-semibold">الدفلى</h3>
+      </div>
+    </section>    
+
+    <!-- Section 2: Basic Information -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-info-circle text-green-600 mr-2"></i> Basic Information
+      </h2>
+      <p class="text-gray-700">
+        Nerium Oleander is a popular ornamental shrub known for its beautiful, vibrant flowers and ability to thrive in hot, dry climates. It is widely used in landscapes, especially in central regions of Saudi Arabia.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Type:</strong> Shrub</li>
+        <li><strong>Lifespan:</strong> 8–12 years</li>
+        <li><strong>Height:</strong> Can reach up to 4 meters</li>
+        <li><strong>Blooming Season:</strong> Spring to Fall</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Care Difficulty & Benefits -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-cogs text-green-600 mr-2"></i> Care & Benefits
+      </h2>
+      <p class="text-gray-700">
+        Oleander is relatively easy to care for and requires minimal maintenance once established. It provides dense coverage, making it excellent for hedges and privacy screens.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Care Level:</strong> Easy</li>
+        <li><strong>Benefits:</strong> Decorative appeal, privacy barrier, drought tolerance</li>
+        <li><strong>Caution:</strong> All parts of the plant are toxic if ingested</li>
+        <li><strong>Historical Use:</strong> In ancient civilizations, Nerium Oleander was used for its medicinal properties, though it is also known for being highly toxic.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Growing Conditions -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-leaf text-green-600 mr-2"></i> Growing Conditions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+        <div class="space-y-4">
+          <p><i class="fas fa-sun text-yellow-500 mr-2 icon-hover"></i><strong>Sunlight:</strong> Full Sun</p>
+          <p><i class="fas fa-cloud-sun-rain text-blue-400 mr-2 icon-hover"></i><strong>Climate:</strong> Hot and Dry</p>
+          <p><i class="fas fa-thermometer-half text-orange-500 mr-2 icon-hover"></i><strong>Temperature Tolerance:</strong> Up to 45°C, Frost-sensitive</p>
+        </div>
+        <div class="space-y-4">
+          <p><i class="fas fa-seedling text-green-500 mr-2 icon-hover"></i><strong>Soil:</strong> Sandy, Well-drained</p>
+          <p><i class="fas fa-home text-purple-500 mr-2 icon-hover"></i><strong>Placement:</strong> Outdoor Only</p>
+          <p><i class="fas fa-water text-blue-500 mr-2 icon-hover"></i><strong>Watering:</strong> Moderate (Let soil dry between waterings)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Medicinal & Toxic Properties -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-heartbeat text-red-500 mr-2"></i> Medicinal & Toxic Properties
+      </h2>
+      <p class="text-gray-700">
+        Despite its beauty, Nerium Oleander contains toxins that can be harmful to humans and animals. It has been traditionally used in folk medicine in some cultures, but its use should be avoided due to its potential toxicity. Some components of the plant can cause nausea, vomiting, and even heart issues if ingested.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Toxicity:</strong> Highly Toxic (especially if ingested)</li>
+        <li><strong>Traditional Uses:</strong> Some cultures used the plant for medicinal purposes such as heart treatment, but it is dangerous to use without medical supervision.</li>
+      </ul>
+    </section>
+
+    <!-- Back Button -->
+    <div class="text-center">
+      <a href="{{ url_for('show_plants') }}" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition">
+        ← Back to Plants      
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-white shadow-inner py-8 text-center text-sm text-gray-500">
+    &copy; 2025 Green Glow | All rights reserved.
+  </footer>
+
+</body>
+</html>
+

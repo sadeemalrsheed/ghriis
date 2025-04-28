@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Green Glow</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Green Glow 🌱</h1>
+    <p>Soil Moisture: <strong>{{ moisture }}</strong></p>
+    <form action="/water" method="post">
+      <button type="submit">💧 Water Plant</button>
+    </form>
+  </div>
+</body>
+</html>

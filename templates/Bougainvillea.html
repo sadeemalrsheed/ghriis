@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bougainvillea | Green Glow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="plants.css" />
+  <style>
+    .section-title {
+      transition: transform 0.3s ease-in-out;
+    }
+    .section-title:hover {
+      transform: scale(1.05);
+    }
+    .icon-hover:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <header class="text-center py-10 bg-green-100 shadow">
+    <h1 class="text-4xl font-bold text-green-700">Bougainvillea | الجهنمية</h1>
+    <p class="text-gray-600 mt-2">Explore its vibrant colors and learn how to grow it successfully</p>
+  </header>
+
+  <main class="px-6 py-12 max-w-6xl mx-auto space-y-16">
+
+<!-- Section 1: Image and Name -->
+   <section class="bg-white rounded-3xl shadow-lg p-8 flex flex-col md:flex-row gap-8 items-center">
+   <img src="{{ url_for('static', filename='western-plant1.jpg') }}" alt="Bougainvillea" class="w-full md:w-1/2 rounded-2xl shadow-md object-cover h-72"/>
+   <div class="flex-1 space-y-4 text-center md:text-left">
+    <h2 class="text-3xl font-bold text-green-700 section-title">Bougainvillea</h2>
+    <h3 class="text-xl text-gray-500 font-semibold">الجهنمية</h3>
+   </div>
+   </section>
+
+
+    <!-- Section 2: Basic Information -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-info-circle text-green-600 mr-2"></i> Basic Information
+      </h2>
+      <p class="text-gray-700">
+        Bougainvillea is a fast-growing, thorny vine known for its bright and colorful bracts that resemble flowers. It thrives in warm climates and is widely cultivated in Saudi Arabia for fences, walls, and pergolas.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Type:</strong> Climbing Vine/Shrub</li>
+        <li><strong>Lifespan:</strong> Over 20 years with care</li>
+        <li><strong>Height:</strong> Can grow up to 10 meters</li>
+        <li><strong>Blooming Season:</strong> Mostly Spring to Fall (year-round in warm areas)</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Care Difficulty & Benefits -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-cogs text-green-600 mr-2"></i> Care & Benefits
+      </h2>
+      <p class="text-gray-700">
+        Bougainvillea is low-maintenance but thrives best with pruning and plenty of sunlight. It adds stunning color to gardens and can be shaped into hedges, arches, or wall covers.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Care Level:</strong> Easy to Moderate</li>
+        <li><strong>Benefits:</strong> Visual appeal, drought-tolerant, suitable for landscaping</li>
+        <li><strong>Note:</strong> Has thorns; handle with care</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Growing Conditions -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-leaf text-green-600 mr-2"></i> Growing Conditions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+        <div class="space-y-4">
+          <p><i class="fas fa-sun text-yellow-500 mr-2 icon-hover"></i><strong>Sunlight:</strong> Full Sun</p>
+          <p><i class="fas fa-cloud-sun text-orange-400 mr-2 icon-hover"></i><strong>Climate:</strong> Hot and Dry</p>
+          <p><i class="fas fa-thermometer-half text-orange-500 mr-2 icon-hover"></i><strong>Temperature Tolerance:</strong> Up to 42°C</p>
+        </div>
+        <div class="space-y-4">
+          <p><i class="fas fa-seedling text-green-500 mr-2 icon-hover"></i><strong>Soil:</strong> Well-drained, slightly acidic</p>
+          <p><i class="fas fa-home text-purple-500 mr-2 icon-hover"></i><strong>Placement:</strong> Outdoor preferred (can grow in pots)</p>
+          <p><i class="fas fa-water text-blue-500 mr-2 icon-hover"></i><strong>Watering:</strong> Low once established (allow soil to dry)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Interesting Facts -->
+    <section class="bg-white rounded-3xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-semibold text-green-700 flex items-center section-title">
+        <i class="fas fa-star text-pink-500 mr-2"></i> Fun & Cultural Facts
+      </h2>
+      <p class="text-gray-700">
+        Bougainvillea is often mistaken for having colorful flowers, but the true flowers are small and white, surrounded by bright bracts. It’s named after the French explorer Louis Antoine de Bougainville.
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Symbolism:</strong> Passion, liveliness, and tropical beauty</li>
+        <li><strong>Common Uses:</strong> Garden fences, walls, pergolas, urban landscaping</li>
+      </ul>
+    </section>
+
+    <!-- Back Button -->
+    <div class="text-center">
+      <a href="{{ url_for('show_plants') }}" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition">
+        ← Back to Plants      
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-white shadow-inner py-8 text-center text-sm text-gray-500">
+    &copy; 2025 Green Glow | All rights reserved.
+  </footer>
+
+</body>
+</html>

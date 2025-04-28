@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Glow | Suitable Plants</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="plants.css" />
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="text-center py-10 bg-green-100 shadow">
+    <h1 class="text-4xl font-bold text-green-700">Suitable Plants by Region</h1>
+    <p class="text-gray-600 mt-2">Discover plants ideal for your region in Saudi Arabia</p>
+  </header>
+
+  <!-- Region Selector -->
+  <section class="text-center py-16">
+    <h2 class="text-3xl font-semibold text-green-800 mb-6">Select Your Region</h2>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
+      <button onclick="showRegion('central')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition">Central</button>
+      <button onclick="showRegion('western')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition">Western</button>
+      <button onclick="showRegion('eastern')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition">Eastern</button>
+      <button onclick="showRegion('southern')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition">Southern</button>
+       <button onclick="showRegion('northern')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition">Northern</button>
+    </div>
+  </section>
+
+  <!-- Plants Sections -->
+  <main class="px-6 py-10 max-w-7xl mx-auto space-y-20">
+
+    <!-- Central Region Cards -->
+    <section id="central" class="plant-region hidden">
+      <h2 class="text-2xl font-bold text-green-700 mb-6">Central Region</h2>
+      <p class="text-lg text-gray-700 mb-6">
+  The Central region of Saudi Arabia is known for its dry, desert-like climate with high temperatures during the summer and cooler winters. The following plants thrive in these conditions:</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="{{ url_for('nerium') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant1.jpg') }}" alt="Nerium" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Nerium Oleander</h3>
+          <p class="text-sm text-gray-600">الدفلى</p>
+        </a>
+        <a href="{{ url_for('ziziphus') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant2.jpg') }}" alt="Ziziphus Spina-Christi" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Ziziphus Spina-Christi</h3>
+          <p class="text-sm text-gray-600">السدر</p>
+        </a>
+        <a href="{{ url_for('acacia') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant3.jpg') }}" alt="Acacia Tortilis" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Acacia Tortilis</h3>
+          <p class="text-sm text-gray-600">السمر</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Western Region Cards -->
+    <section id="western" class="plant-region hidden">
+      <h2 class="text-3xl font-semibold text-green-800 mb-6">Select Your Region</h2>
+      <p class="text-lg text-gray-700 mb-6">
+        The Central region of Saudi Arabia is known for its dry, desert-like climate with high temperatures during the summer and cooler winters. The following plants thrive in these conditions:</p>      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="{{ url_for('bougainvillea') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant1.jpg') }}" alt="Bougainvillea" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Bougainvillea</h3>
+          <p class="text-sm text-gray-600">الجهنمية</p>
+        </a>
+        <a href="{{ url_for('citrus') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant2.jpg') }}" alt="Citrus" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Citrus</h3>
+          <p class="text-sm text-gray-600">الحمضيات</p>
+        </a>
+        <a href="{{ url_for('ficus_benjamina') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant3.jpg') }}" alt="Ficus Benjamina" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Ficus Benjamina</h3>
+          <p class="text-sm text-gray-600">فيكس بنجامينا</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Eastern Region Cards -->
+    <section id="eastern" class="plant-region hidden">
+      <h2 class="text-3xl font-semibold text-green-800 mb-6">Select Your Region</h2>
+      <p class="text-lg text-gray-700 mb-6">
+        The Central region of Saudi Arabia is known for its dry, desert-like climate with high temperatures during the summer and cooler winters. The following plants thrive in these conditions:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="{{ url_for('date_palm') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant1.jpg') }}" alt="Date Palm" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Date Palm</h3>
+          <p class="text-sm text-gray-600">نخيل التمر</p>
+        </a>
+        <a href="{{ url_for('jojoba') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant2.jpg') }}" alt="Jojoba" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Jojoba</h3>
+          <p class="text-sm text-gray-600">الجوجوبا</p>
+        </a>
+        <a href="{{ url_for('acacia_rigidula') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant3.jpg') }}" alt="Acacia Rigidula" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Acacia Rigidula</h3>
+          <p class="text-sm text-gray-600">الأكاسيا الصلبة</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Northern Region Cards -->
+    <section id="northern" class="plant-region hidden">
+      <h2 class="text-3xl font-semibold text-green-800 mb-6">Select Your Region</h2>
+      <p class="text-lg text-gray-700 mb-6">
+        The Central region of Saudi Arabia is known for its dry, desert-like climate with high temperatures during the summer and cooler winters. The following plants thrive in these conditions:</p>      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="{{ url_for('lavender') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant1.jpg') }}" alt="Lavender" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Lavender</h3>
+          <p class="text-sm text-gray-600">الخزامى</p>
+        </a>
+        <a href="{{ url_for('rosemary') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant2.jpg') }}" alt="Rosemary" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Rosemary</h3>
+          <p class="text-sm text-gray-600">إكليل الجبل</p>
+        </a>
+        <a href="{{ url_for('thyme') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant3.jpg') }}" alt="Thyme" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Thyme</h3>
+          <p class="text-sm text-gray-600">الزعتر</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Southern Region Cards -->
+    <section id="southern" class="plant-region hidden">
+      <h2 class="text-3xl font-semibold text-green-800 mb-6">Select Your Region</h2>
+      <p class="text-lg text-gray-700 mb-6">
+        The Central region of Saudi Arabia is known for its dry, desert-like climate with high temperatures during the summer and cooler winters. The following plants thrive in these conditions:</p>      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="{{ url_for('sage') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant1.jpg') }}" alt="Sage" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Sage</h3>
+          <p class="text-sm text-gray-600">القصعين</p>
+        </a>
+        <a href="{{ url_for('oregano') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant2.jpg') }}" alt="Oregano" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Oregano</h3>
+          <p class="text-sm text-gray-600">الأوريغانو</p>
+        </a>
+        <a href="{{ url_for('basil') }}" class="plant-card bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant3.jpg') }}" alt="Basil" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Basil</h3>
+          <p class="text-sm text-gray-600">الحبق</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow-inner py-6 text-center text-sm text-gray-500 mt-20">
+    &copy; 2025 Green Glow | All rights reserved.
+  </footer>
+  <script src="{{ url_for('static', filename='plants.js') }}" defer></script>
+
+</body>
+</html>
