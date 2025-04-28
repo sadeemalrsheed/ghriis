@@ -11,11 +11,8 @@ import requests
 from flask import Flask, render_template, request, redirect, flash, send_from_directory 
 from werkzeug.utils import secure_filename 
 from flask_apscheduler import APScheduler
-
+import subprocess
 from data import disease_map, details_map
-
-import serial
-
 
 if not os.path.exists('model.h5'):
     print("Downloading model...")
@@ -224,48 +221,6 @@ def oregano():
 def basil():
     return render_template('Basil.html')
 
-def get_arduino():
-    try:
-        return serial.Serial('COM3', 9600, timeout=2)
-    except serial.SerialException as e:
-        print("Error opening serial port:", e)
-        return None
-
-
-@app.route('/device')
-def device_status():
-    return render_template('device.html')  # Just load the page normally
-
-@app.route('/device-moisture')
-def get_moisture():
-    arduino = get_arduino()
-    if arduino:
-        try:
-            arduino.write(b'READ\n')
-            data = arduino.readline().decode().strip()
-            arduino.close()
-            if data.isdigit():
-                return f"{data}%"  # ← important: return plain percentage string!
-        except:
-            return ""  # ← empty to avoid showing error
-    return ""  # ← also empty if no connection
-
-
-
-
-@app.route('/water', methods=['POST'])
-def water():
-    arduino = get_arduino()
-    if arduino:
-        arduino.write(b'WATER\n')
-        arduino.close()
-        return ('', 204)
-    else:
-        return ("Could not connect to device", 500)
-
-
-
-
 @app.route('/favicon.ico')
 
 def favicon(): 
@@ -307,4 +262,14 @@ def api_predict():
         return {"Error": "Something Went Wrong!"}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Start the arduino_server.py 
+    print("Starting arduino_server.py...")
+    try:
+        # run in background
+        subprocess.Popen(['python', 'arduino/arduino_server.py'])
+        print("arduino_server.py started.")
+    except FileNotFoundError:
+        print("Error: 'arduino_server.py' not found. Make sure it's in the same directory or provide the correct path.")
+    except Exception as e:
+        print(f"Error starting arduino_server.py: {e}")
+    app.run(port=5001, debug=True)
