@@ -22,7 +22,7 @@ CORS(app)  # Allow cross-origin requests
 
 # Serial port configuration for windows use com3 or com4
 SERIAL_PORT = 'com3'
-BAUD_RATE = 9600s
+BAUD_RATE = 9600
 
 # Global variables to store latest readings
 sensor_data = {
