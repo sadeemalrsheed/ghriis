@@ -27,32 +27,28 @@
   <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-20">
 
     <!-- Box 1 -->
-    <a href="http://127.0.0.1:5000" target="_blank"
-       class="bg-white shadow-lg rounded-3xl p-8 text-center hover:bg-green-100 transition duration-300 ease-in-out">
-      <h2 class="text-2xl font-semibold text-green-700 mb-3">
-        <i>Check your device's status</i>
-      </h2>
-      <p class="text-sm text-gray-500">(Click here)</p>
-    </a>
+  <a href="http://127.0.0.1:5000" target="_blank"
+  class="bg-white shadow-lg rounded-3xl p-8 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+  <h2 class="text-3xl font-bold italic text-green-700">
+  Check your device's status
+  </h2>
+   </a>
 
-    <a href="/condition" class="bg-white shadow-lg rounded-3xl p-8 text-center hover:bg-green-100 transition duration-300 ease-in-out">
-      <h2 class="text-2xl font-semibold text-green-700 mb-3">
-        <i>Plant condition overview</i>
-      </h2>
-      <p class="text-sm text-gray-500">(Click here)</p>
-    </a>
-    
-    
+<!-- Box 2 -->
+  <a href="/condition" 
+  class="bg-white shadow-lg rounded-3xl p-8 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+  <h2 class="text-3xl font-bold italic text-green-700">
+   Plant condition overview
+  </h2>
+  </a>
 
-     <!-- Box 3 -->
-    <a href="{{ url_for('show_plants') }}"
-     class="bg-white shadow-lg rounded-3xl p-8 text-center hover:bg-green-100 transition duration-300 ease-in-out">
-     <h2 class="text-2xl font-semibold text-green-700 mb-3">
-      <i>Find suitable plants for your environment</i>
-     </h2>
-     <p>( click here )</p>
-    </a>
-  </section>
+   <!-- Box 3 -->
+   <a href="{{ url_for('show_plants') }}"
+   class="bg-white shadow-lg rounded-3xl p-8 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+   <h2 class="text-3xl font-bold italic text-green-700">
+   Find suitable plants for your environment</h2>
+   </a>
+
 
   <!-- Footer -->
   <footer class="bg-white shadow-inner py-12 px-6 text-center">
