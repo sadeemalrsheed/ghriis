@@ -67,4 +67,17 @@ main > .container {
 .brown-text {
 	color: #4e260d; 
 }
-
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer {
+    margin-top: auto;
+  }
+  
