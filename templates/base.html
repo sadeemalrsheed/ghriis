@@ -1,184 +1,173 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Ghiras Team">
-    <meta name="description" content="Ghiras helps detect plant diseases and suggests cures using deep learning.">
-    <meta property="og:image" content="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
-    <meta property="og:title" content="Ghiras">
-    <meta property="og:description" content="Get instant and accurate plant disease detection.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ghiras Team">
+  <meta name="description" content="Ghiras helps detect plant diseases and suggests cures using deep learning.">
+  <meta property="og:image" content="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
+  <meta property="og:title" content="Ghiras">
+  <meta property="og:description" content="Get instant and accurate plant disease detection.">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
 
-    <!-- Custom Styles -->
-    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
+  <title>{% block title %}Ghiras{% endblock %}</title>
 
-    <title>{% block title %}Ghiras{% endblock %}</title>
-
-    <style>
-        body {
-            background-color: #f0fdf4;
-            font-family: 'Signika', sans-serif;
-            color: #216b39;
-        }
-        .brown-text {
-            color: #4e260d;
-        }
-        .custom-bg-color {
-            background-color: white;
-        }
-        .custom-bg-color-3 {
-            background-color: #216b39;
-        }
-        .custom-bg-color-4 {
-            background-color: #8bb094;
-        }
-        .nav-color {
-            background-color: #216b39;
-        }
-        .crops-list-tab {
-            color: white;
-            text-align: center;
-        }
-        .nav-tabs .nav-link.active {
-            background-color: #8bb094;
-            border-color: #216b39;
-            color: #fff;
-        }
-        .nav-link:hover {
-            color: #fff !important;
-            background-color: #545454;
-            border-radius: 0.5rem;
-        }
-        .nav-tabs {
-            --bs-nav-tabs-link-hover-border-color: #333333;
-        }
-        .footer {
-            color: white;
-            font-size: 16px;
-        }
-    </style>
+  <style>
+    body {
+      background-color: #f0fdf4;
+      font-family: 'Signika', sans-serif;
+      color: #216b39;
+    }
+    .brown-text {
+      color: #4e260d;
+    }
+    .custom-bg-color {
+      background-color: white;
+    }
+    .custom-bg-color-3 {
+      background-color: #216b39;
+    }
+    .custom-bg-color-4 {
+      background-color: #8bb094;
+    }
+    .nav-color {
+      background-color: #216b39;
+    }
+    .crops-list-tab {
+      color: white;
+      text-align: center;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #8bb094;
+      border-color: #216b39;
+      color: #fff;
+    }
+    .nav-link:hover {
+      color: #fff !important;
+      background-color: #545454;
+      border-radius: 0.5rem;
+    }
+    .nav-tabs {
+      --bs-nav-tabs-link-hover-border-color: #333333;
+    }
+  </style>
 </head>
 
 <body>
 
- <header class="navbar navbar-expand-md navbar-dark nav-color fixed-top">
+  <header class="navbar navbar-expand-md navbar-dark nav-color fixed-top">
     <nav class="container-fluid">
-        <a class="navbar-brand p-1 me-2" href="/">
-            <img src="{{ url_for('static', filename='Agent-Crop-Icon.png') }}" width="40" height="40" class="rounded" alt="Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse pt-2 py-md-0" id="bdNavbar">
-            <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                <li class="nav-item"><a class="nav-link" href="#privacy">Privacy</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-            </ul>
-        </div>
+      <a class="navbar-brand p-1 me-2" href="/">
+        <img src="{{ url_for('static', filename='Agent-Crop-Icon.png') }}" width="40" height="40" class="rounded" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse pt-2 py-md-0" id="bdNavbar">
+        <ul class="navbar-nav flex-grow-1">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#privacy">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+      </div>
     </nav>
- </header>
+  </header>
 
- <main class="flex-shrink-0" style="padding-top: 80px;">
+  <main class="flex-shrink-0" style="padding-top: 80px;">
+    {% block content %}{% endblock %}
 
- {% block content %}{% endblock %}
-
-  <!-- Features Section -->
-  <section id="features" class="py-5">
-    <div class="container px-4 px-md-3">
+    <!-- Features -->
+    <section id="features" class="py-5">
+      <div class="container px-4 px-md-3">
         <div class="row align-items-center">
-            <div class="col-9 mx-auto col-md-6 col-lg-5">
-                <img src="{{ url_for('static', filename='neural-brain.png') }}" class="img-fluid" alt="Features" width="400" height="400">
-            </div>
-            <div class="col pt-4">
-                <h2 class="brown-text mb-3">Features</h2>
-                <p class="brown-text mb-4">Ghiras uses Deep Learning to predict diseases and offers efficient solutions using modern AI libraries.</p>
-                <h4 class="brown-text mb-2">Technology Stack:</h4>
-                <ul class="brown-text">
-                    <li>Python</li>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Bootstrap</li>
-                    <li>Flask</li>
-                    <li>TensorFlow, Keras</li>
-                    <li>Pandas, Numpy, Scipy</li>
-                </ul>
-            </div>
+          <div class="col-9 mx-auto col-md-6 col-lg-5">
+            <img src="{{ url_for('static', filename='neural-brain.png') }}" class="img-fluid" alt="Features" width="400" height="400">
+          </div>
+          <div class="col pt-4">
+            <h2 class="brown-text mb-3">Features</h2>
+            <p class="brown-text mb-4">Ghiras uses Deep Learning to predict diseases and offers efficient solutions using modern AI libraries.</p>
+            <h4 class="brown-text mb-2">Technology Stack:</h4>
+            <ul class="brown-text">
+              <li>Python</li>
+              <li>HTML, CSS, JavaScript</li>
+              <li>Bootstrap</li>
+              <li>Flask</li>
+              <li>TensorFlow, Keras</li>
+              <li>Pandas, Numpy, Scipy</li>
+            </ul>
+          </div>
         </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- Crops List Section -->
-  <section id="crops-list" class="py-5">
-    <div class="container">
+    <!-- Crops List -->
+    <section id="crops-list" class="py-5">
+      <div class="container">
         <h5 class="brown-text mb-4">Supported Crops and Diseases:</h5>
-    </div>
+      </div>
 
-    <div class="container custom-bg-color-3 rounded p-4">
+      <div class="container custom-bg-color-3 rounded p-4">
         <nav>
-            <div class="nav nav-tabs crops-list-tab" id="nav-tab" role="tablist">
-                {% for crop in ['Apple', 'Bell Pepper', 'Blueberry', 'Cherry', 'Corn (Maize)', 'Grape', 'Orange', 'Peach', 'Potato', 'Raspberry', 'Rice', 'Soybean', 'Squash', 'Strawberry', 'Tomato'] %}
-                <button class="nav-link crops-list-tab rounded" data-bs-toggle="tab" data-bs-target="#nav-{{ crop|lower|replace(' ', '-') }}" type="button" role="tab">
-                    {{ crop }}
-                </button>
-                {% endfor %}
-            </div>
+          <div class="nav nav-tabs crops-list-tab" id="nav-tab" role="tablist">
+            {% for crop in ['Apple', 'Bell Pepper', 'Blueberry', 'Cherry', 'Corn (Maize)', 'Grape', 'Orange', 'Peach', 'Potato', 'Raspberry', 'Rice', 'Soybean', 'Squash', 'Strawberry', 'Tomato'] %}
+            <button class="nav-link crops-list-tab rounded" data-bs-toggle="tab" data-bs-target="#nav-{{ crop|lower|replace(' ', '-') }}" type="button" role="tab">
+              {{ crop }}
+            </button>
+            {% endfor %}
+          </div>
         </nav>
 
         <div class="tab-content custom-bg-color-4 rounded p-4" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-apple" role="tabpanel">
-                <ul class="brown-text">
-                    <li>Apple Scab</li>
-                    <li>Black Rot</li>
-                    <li>Cedar Rust</li>
-                    <li>Healthy</li>
-                </ul>
-            </div>
+          <div class="tab-pane fade show active" id="nav-apple" role="tabpanel">
+            <ul class="brown-text">
+              <li>Apple Scab</li>
+              <li>Black Rot</li>
+              <li>Cedar Rust</li>
+              <li>Healthy</li>
+            </ul>
+          </div>
         </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- Privacy Section -->
-   <section id="privacy" class="py-5">
-    <div class="container px-4 px-md-3">
+    <!-- Privacy -->
+    <section id="privacy" class="py-5">
+      <div class="container px-4 px-md-3">
         <div class="row align-items-center">
-            <div class="col-10 mx-auto col-md-6 order-md-1 col-lg-5">
-                <img src="{{ url_for('static', filename='privacy.png') }}" alt="Privacy" class="img-fluid" width="400" height="400">
-            </div>
-            <div class="col pt-4">
-                <h2 class="brown-text mb-3">Privacy</h2>
-                <p class="brown-text mb-3">Ghiras respects your privacy. Your uploaded images are automatically deleted after an hour. No ads, no tracking, no cookies — just plant care.</p>
-                <h4 class="brown-text">Privacy-First Features:</h4>
-                <ul class="brown-text">
-                    <li>No data collection</li>
-                    <li>No cookies</li>
-                    <li>Automatic deletion</li>
-                    <li>Ad-free experience</li>
-                </ul>
-            </div>
+          <div class="col-10 mx-auto col-md-6 order-md-1 col-lg-5">
+            <img src="{{ url_for('static', filename='privacy.png') }}" alt="Privacy" class="img-fluid" width="400" height="400">
+          </div>
+          <div class="col pt-4">
+            <h2 class="brown-text mb-3">Privacy</h2>
+            <p class="brown-text mb-3">Ghiras respects your privacy. Your uploaded images are automatically deleted after an hour. No ads, no tracking, no cookies — just plant care.</p>
+            <h4 class="brown-text">Privacy-First Features:</h4>
+            <ul class="brown-text">
+              <li>No data collection</li>
+              <li>No cookies</li>
+              <li>Automatic deletion</li>
+              <li>Ad-free experience</li>
+            </ul>
+          </div>
         </div>
-    </div>
-  </section>
-
-
+      </div>
+    </section>
   </main>
 
-  <footer class="bg-[#216b39] text-white text-center py-4 px-6"> 
-    <h3 class="text-lg font-bold mb-2">Contact Us</h3>
-    <div class="space-y-1">
-      <p class="text-white text-sm">
-        Email:
+  <!-- ✅ Fixed Footer -->
+  <footer style="background-color: #216b39;" class="text-white text-center py-3 px-4">
+    <h3 class="text-lg font-bold mb-1">Contact Us</h3>
+    <div class="text-sm">
+      <p>Email:
         <a href="mailto:ghiras.saudi@gmail.com" class="text-white hover:underline">
           ghiras.saudi@gmail.com
         </a>
       </p>
-      <p class="text-white text-sm">
-        Phone:
+      <p>Phone:
         <a href="tel:0558165619" class="text-white hover:underline">
           0558165619
         </a>
@@ -186,6 +175,6 @@
     </div>
   </footer>
 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
