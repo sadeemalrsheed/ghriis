@@ -6,8 +6,16 @@
     <title>Ghiras</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
         font-family: 'Georgia', serif;
+      }
+      img {
+        display: block;
       }
     </style>
   </head>  
@@ -15,9 +23,9 @@
 
   <header class="text-center py-0">
     <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo"
-    class="mx-auto w-[500px] mb-0" />
+         class="mx-auto w-[500px] mb-0" />
   </header>
-  
+
 
   <!-- Boxes -->
   <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-8">
