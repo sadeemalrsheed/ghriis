@@ -1,27 +1,90 @@
 {% extends 'base.html' %}
 {% block title %} Green Glow: Your Prediction and Possible Cure {% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="row mt-5 justify-content-center">
-        {% for image, details in predictions.items() %}
-            <div class="card custom-bg-color card-custom mx-2 mb-3" style="background-color: #8bb094; border: 1px solid #216b39; color: #545454;">
-                <img src="{{ folder+'/'+image }}" class="card-img-top mx-auto img-fluid" alt="Crop Image: {{ image }}" style="padding-top: 12px; max-height:250px; object-fit: cover;">
-                <div class="card-body">
-                    <p class="card-text"><strong>Image filename:</strong><br>{{ image }}</p>
-                    <p class="card-text"><strong>Predicted disease:</strong><br>{{ details["prediction"] }}</p>
-                    <p class="card-text"><strong>Description:</strong><br>{{ details["description"] }}</p>
-                    <p class="card-text"><strong>Identification/Symptoms:</strong><br>{{ details["symptoms"] }}</p>
-                    {% if "Healthy" in details["prediction"] %}
-                        <p class="card-text"><strong>Disease Management/Treatment:</strong><br>{{ details["source"] }}</p>
-                    {% else %}
-                        <p class="card-text"><strong>Disease Management/Treatment:</strong><br>For more information, visit the <a href='{{ details["source"] }}' target="_blank" style="color: #216b39;">source</a>.</p>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
+
+<style>
+  body {
+    background-color: #f0fdf4;
+    font-family: 'Signika', sans-serif;
+    color: #1a451f;
+  }
+
+  .prediction-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem 1rem;
+  }
+
+  .card {
+    background-color: #e8f5e9;
+    border: 1px solid #216b39;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    border-bottom: 1px solid #216b39;
+    max-height: 240px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .card-body p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-body strong {
+    color: #216b39;
+  }
+
+  .btn-home {
+    background-color: #216b39;
+    color: white;
+    margin-top: 2rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+
+  .btn-home:hover {
+    background-color: #1b5a30;
+    text-decoration: none;
+  }
+</style>
+
+<div class="prediction-container">
+  <div class="row justify-content-center g-4">
+    {% for image, details in predictions.items() %}
+      <div class="col-md-6 col-lg-5">
+        <div class="card">
+          <img src="{{ folder+'/'+image }}" alt="Crop Image: {{ image }}">
+          <div class="card-body">
+            <p><strong>Image filename:</strong><br>{{ image }}</p>
+            <p><strong>Predicted disease:</strong><br>{{ details["prediction"] }}</p>
+            <p><strong>Description:</strong><br>{{ details["description"] }}</p>
+            <p><strong>Identification/Symptoms:</strong><br>{{ details["symptoms"] }}</p>
+            {% if "Healthy" in details["prediction"] %}
+              <p><strong>Disease Management/Treatment:</strong><br>{{ details["source"] }}</p>
+            {% else %}
+              <p><strong>Disease Management/Treatment:</strong><br>
+                For more info, visit <a href="{{ details['source'] }}" target="_blank" style="color: #1a451f;">this page</a>.
+              </p>
+            {% endif %}
+          </div>
         </div>
-    </div>
-    <div class="container text-center">
-        <a href="/" class="btn btn-lg" style="background-color: #216b39; color: white;">Return to Home Page</a>
-    </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="text-center">
+    <a href="/" class="btn btn-home">Return to Home Page</a>
+  </div>
+</div>
+
 {% endblock %}
