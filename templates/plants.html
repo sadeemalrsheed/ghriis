@@ -178,20 +178,32 @@
 
   <!-- JavaScript -->
   <script>
-  function showRegion(regionId) {
-  document.querySelectorAll('.plant-region').forEach(section => {
-    section.classList.add('hidden');
-  });
-
-  const target = document.getElementById(regionId);
-  target.classList.remove('hidden');
-
-  // Smooth scroll to the section
-  setTimeout(() => {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 50); // slight delay to make sure it's un-hidden 
-  }
+    function setActive(clickedBtn) {
+      document.querySelectorAll('.region-btn').forEach(btn => {
+        btn.classList.remove('bg-green-600', 'text-white');
+        btn.classList.add('bg-white', 'text-green-700');
+      });
+      clickedBtn.classList.remove('bg-white', 'text-green-700');
+      clickedBtn.classList.add('bg-green-600', 'text-white');
+    }
+  
+    function showRegion(regionId) {
+      // Hide all regions first
+      document.querySelectorAll('.plant-region').forEach(section => {
+        section.classList.add('hidden');
+      });
+  
+      // Show the selected region
+      const target = document.getElementById(regionId);
+      target.classList.remove('hidden');
+  
+      // Smooth scroll to the selected region
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100); // small timeout so it un-hides first
+    }
   </script>
+  
 
 </body>
 </html>
