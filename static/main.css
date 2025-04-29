@@ -29,7 +29,7 @@ a.nav-link:hover {
 }
 body {
     background-color: #f0fdf4; /* Light green like index */
-    color: #1f2937; /* Tailwind gray-800 or default text */
+    color: #216b39; /* Tailwind gray-800 or default text */
   }  
 .custom-font {
     font-family: 'Signika', sans-serif;
