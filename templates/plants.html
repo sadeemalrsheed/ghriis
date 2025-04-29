@@ -5,26 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ghiras | Suitable Plants</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      font-family: 'Georgia', serif;
-    }
-    main {
-      flex: 1;
-    }
-    img {
-      display: block;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; }
+    img { display: block; }
   </style>
 </head>
 
-<body class="bg-green-50 text-gray-800">
+<body class="bg-green-50 text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
   <header class="text-center py-6 bg-green-100 shadow">
@@ -36,126 +25,136 @@
   <section class="text-center py-12">
     <h2 class="text-3xl font-bold text-green-800 mb-8 tracking-wide">Select Your Region</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-6xl mx-auto">
-      <button onclick="setActive(this); showRegion('central')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">Central</button>
-      <button onclick="setActive(this); showRegion('western')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">Western</button>
-      <button onclick="setActive(this); showRegion('eastern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">Eastern</button>
-      <button onclick="setActive(this); showRegion('southern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">Southern</button>
-      <button onclick="setActive(this); showRegion('northern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">Northern</button>
+      <button onclick="setActive(this); showRegion('central')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">
+        Central
+      </button>
+      <button onclick="setActive(this); showRegion('western')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">
+        Western
+      </button>
+      <button onclick="setActive(this); showRegion('eastern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">
+        Eastern
+      </button>
+      <button onclick="setActive(this); showRegion('southern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">
+        Southern
+      </button>
+      <button onclick="setActive(this); showRegion('northern')" class="region-btn bg-white text-green-700 font-bold py-6 px-6 rounded-3xl shadow-lg hover:bg-green-100 transition">
+        Northern
+      </button>
     </div>
   </section>
 
   <!-- Plant Sections -->
-  <main class="px-6 pb-12 max-w-7xl mx-auto space-y-20">
+  <main class="px-6 py-10 max-w-7xl mx-auto space-y-20 flex-grow">
 
-    <!-- Central Region -->
-    <section id="central" class="plant-region hidden">
+    <!-- Central -->
+    <section id="central" class="plant-region hidden pt-20">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Central Region</h2>
       <p class="text-lg text-gray-700 mb-6">Plants that survive hot and dry climate:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="{{ url_for('nerium') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='central-plant1.jpg') }}" alt="Nerium" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='central-plant1.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Nerium Oleander</h3>
           <p class="text-sm text-gray-600">الدفلى</p>
         </a>
         <a href="{{ url_for('ziziphus') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='central-plant2.jpg') }}" alt="Ziziphus" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='central-plant2.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Ziziphus Spina-Christi</h3>
           <p class="text-sm text-gray-600">السدر</p>
         </a>
         <a href="{{ url_for('acacia') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='central-plant3.jpg') }}" alt="Acacia" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='central-plant3.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Acacia Tortilis</h3>
           <p class="text-sm text-gray-600">السمر</p>
         </a>
       </div>
     </section>
 
-    <!-- Western Region -->
-    <section id="western" class="plant-region hidden">
+    <!-- Western -->
+    <section id="western" class="plant-region hidden pt-1">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Western Region</h2>
       <p class="text-lg text-gray-700 mb-6">Coastal humid climate plants:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="{{ url_for('bougainvillea') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='western-plant1.jpg') }}" alt="Bougainvillea" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='western-plant1.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Bougainvillea</h3>
           <p class="text-sm text-gray-600">الجهنمية</p>
         </a>
         <a href="{{ url_for('citrus') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='western-plant2.jpg') }}" alt="Citrus" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='western-plant2.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Citrus</h3>
           <p class="text-sm text-gray-600">الحمضيات</p>
         </a>
         <a href="{{ url_for('ficus_benjamina') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='western-plant3.jpg') }}" alt="Ficus Benjamina" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='western-plant3.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Ficus Benjamina</h3>
           <p class="text-sm text-gray-600">فيكس بنجامينا</p>
         </a>
       </div>
     </section>
 
-    <!-- Eastern Region -->
-    <section id="eastern" class="plant-region hidden">
+    <!-- Eastern -->
+    <section id="eastern" class="plant-region hidden pt-1">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Eastern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Desert climate with some coastal areas:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="{{ url_for('date_palm') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='eastern-plant1.jpg') }}" alt="Date Palm" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='eastern-plant1.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Date Palm</h3>
           <p class="text-sm text-gray-600">نخيل التمر</p>
         </a>
         <a href="{{ url_for('jojoba') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='eastern-plant2.jpg') }}" alt="Jojoba" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='eastern-plant2.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Jojoba</h3>
           <p class="text-sm text-gray-600">الجوجوبا</p>
         </a>
         <a href="{{ url_for('acacia_rigidula') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='eastern-plant3.jpg') }}" alt="Acacia Rigidula" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='eastern-plant3.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Acacia Rigidula</h3>
           <p class="text-sm text-gray-600">الأكاسيا الصلبة</p>
         </a>
       </div>
     </section>
 
-    <!-- Southern Region -->
-    <section id="southern" class="plant-region hidden">
+    <!-- Southern -->
+    <section id="southern" class="plant-region hidden pt-1">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Southern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Mountainous plants with cooler weather:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="{{ url_for('sage') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='southern-plant1.jpg') }}" alt="Sage" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='southern-plant1.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Sage</h3>
           <p class="text-sm text-gray-600">القصعين</p>
         </a>
         <a href="{{ url_for('oregano') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='southern-plant2.jpg') }}" alt="Oregano" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='southern-plant2.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Oregano</h3>
           <p class="text-sm text-gray-600">الأوريغانو</p>
         </a>
         <a href="{{ url_for('basil') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='southern-plant3.jpg') }}" alt="Basil" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='southern-plant3.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Basil</h3>
           <p class="text-sm text-gray-600">الحبق</p>
         </a>
       </div>
     </section>
 
-    <!-- Northern Region -->
-    <section id="northern" class="plant-region hidden">
+    <!-- Northern -->
+    <section id="northern" class="plant-region hidden pt-1">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Northern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Cooler winter plants and hardy varieties:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="{{ url_for('lavender') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='northern-plant1.jpg') }}" alt="Lavender" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='northern-plant1.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Lavender</h3>
           <p class="text-sm text-gray-600">الخزامى</p>
         </a>
         <a href="{{ url_for('rosemary') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='northern-plant2.jpg') }}" alt="Rosemary" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='northern-plant2.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Rosemary</h3>
           <p class="text-sm text-gray-600">إكليل الجبل</p>
         </a>
         <a href="{{ url_for('thyme') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
-          <img src="{{ url_for('static', filename='northern-plant3.jpg') }}" alt="Thyme" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <img src="{{ url_for('static', filename='northern-plant3.jpg') }}" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Thyme</h3>
           <p class="text-sm text-gray-600">الزعتر</p>
         </a>
@@ -167,13 +166,16 @@
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-4 px-6">
     <h3 class="text-lg font-bold mb-2">Contact Us</h3>
-    <div class="space-y-1 text-sm">
-      <p>Email: <a href="mailto:ghiras.saudi@gmail.com" class="text-white underline">ghiras.saudi@gmail.com</a></p>
-      <p>Phone: <a href="tel:0558165619" class="text-white underline">0558165619</a></p>
+    <div class="space-y-1">
+      <p class="text-sm">
+        Email: <a href="mailto:ghiras.saudi@gmail.com" class="text-white hover:underline">ghiras.saudi@gmail.com</a>
+      </p>
+      <p class="text-sm">
+        Phone: <a href="tel:0558165619" class="text-white hover:underline">0558165619</a>
+      </p>
     </div>
   </footer>
 
-  <!-- JavaScript -->
   <script>
     function setActive(clickedBtn) {
       document.querySelectorAll('.region-btn').forEach(btn => {
