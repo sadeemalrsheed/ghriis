@@ -47,63 +47,118 @@
   <!-- Plant Sections -->
   <main class="px-6 pb-12 max-w-7xl mx-auto space-y-20">
 
+    <!-- Central Region -->
     <section id="central" class="plant-region hidden">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Central Region</h2>
       <p class="text-lg text-gray-700 mb-6">Plants that survive hot and dry climate:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl shadow-lg p-6">
-          <img src="https://via.placeholder.com/400x200" alt="Nerium" class="rounded-xl mb-4 w-full h-48 object-cover">
+        <a href="{{ url_for('nerium') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant1.jpg') }}" alt="Nerium" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Nerium Oleander</h3>
           <p class="text-sm text-gray-600">الدفلى</p>
-        </div>
+        </a>
+        <a href="{{ url_for('ziziphus') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant2.jpg') }}" alt="Ziziphus" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Ziziphus Spina-Christi</h3>
+          <p class="text-sm text-gray-600">السدر</p>
+        </a>
+        <a href="{{ url_for('acacia') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='central-plant3.jpg') }}" alt="Acacia" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Acacia Tortilis</h3>
+          <p class="text-sm text-gray-600">السمر</p>
+        </a>
       </div>
     </section>
 
+    <!-- Western Region -->
     <section id="western" class="plant-region hidden">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Western Region</h2>
       <p class="text-lg text-gray-700 mb-6">Coastal humid climate plants:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl shadow-lg p-6">
-          <img src="https://via.placeholder.com/400x200" alt="Bougainvillea" class="rounded-xl mb-4 w-full h-48 object-cover">
+        <a href="{{ url_for('bougainvillea') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant1.jpg') }}" alt="Bougainvillea" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Bougainvillea</h3>
           <p class="text-sm text-gray-600">الجهنمية</p>
-        </div>
+        </a>
+        <a href="{{ url_for('citrus') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant2.jpg') }}" alt="Citrus" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Citrus</h3>
+          <p class="text-sm text-gray-600">الحمضيات</p>
+        </a>
+        <a href="{{ url_for('ficus_benjamina') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='western-plant3.jpg') }}" alt="Ficus Benjamina" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Ficus Benjamina</h3>
+          <p class="text-sm text-gray-600">فيكس بنجامينا</p>
+        </a>
       </div>
     </section>
 
+    <!-- Eastern Region -->
     <section id="eastern" class="plant-region hidden">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Eastern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Desert climate with some coastal areas:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl shadow-lg p-6">
-          <img src="https://via.placeholder.com/400x200" alt="Date Palm" class="rounded-xl mb-4 w-full h-48 object-cover">
+        <a href="{{ url_for('date_palm') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant1.jpg') }}" alt="Date Palm" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Date Palm</h3>
           <p class="text-sm text-gray-600">نخيل التمر</p>
-        </div>
+        </a>
+        <a href="{{ url_for('jojoba') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant2.jpg') }}" alt="Jojoba" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Jojoba</h3>
+          <p class="text-sm text-gray-600">الجوجوبا</p>
+        </a>
+        <a href="{{ url_for('acacia_rigidula') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='eastern-plant3.jpg') }}" alt="Acacia Rigidula" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Acacia Rigidula</h3>
+          <p class="text-sm text-gray-600">الأكاسيا الصلبة</p>
+        </a>
       </div>
     </section>
 
+    <!-- Southern Region -->
     <section id="southern" class="plant-region hidden">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Southern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Mountainous plants with cooler weather:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl shadow-lg p-6">
-          <img src="https://via.placeholder.com/400x200" alt="Sage" class="rounded-xl mb-4 w-full h-48 object-cover">
+        <a href="{{ url_for('sage') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant1.jpg') }}" alt="Sage" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Sage</h3>
           <p class="text-sm text-gray-600">القصعين</p>
-        </div>
+        </a>
+        <a href="{{ url_for('oregano') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant2.jpg') }}" alt="Oregano" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Oregano</h3>
+          <p class="text-sm text-gray-600">الأوريغانو</p>
+        </a>
+        <a href="{{ url_for('basil') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='southern-plant3.jpg') }}" alt="Basil" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Basil</h3>
+          <p class="text-sm text-gray-600">الحبق</p>
+        </a>
       </div>
     </section>
 
+    <!-- Northern Region -->
     <section id="northern" class="plant-region hidden">
       <h2 class="text-3xl font-bold text-green-800 mb-6">Northern Region</h2>
       <p class="text-lg text-gray-700 mb-6">Cooler winter plants and hardy varieties:</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl shadow-lg p-6">
-          <img src="https://via.placeholder.com/400x200" alt="Lavender" class="rounded-xl mb-4 w-full h-48 object-cover">
+        <a href="{{ url_for('lavender') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant1.jpg') }}" alt="Lavender" class="rounded-xl mb-4 w-full h-48 object-cover">
           <h3 class="text-xl font-semibold text-green-700">Lavender</h3>
           <p class="text-sm text-gray-600">الخزامى</p>
-        </div>
+        </a>
+        <a href="{{ url_for('rosemary') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant2.jpg') }}" alt="Rosemary" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Rosemary</h3>
+          <p class="text-sm text-gray-600">إكليل الجبل</p>
+        </a>
+        <a href="{{ url_for('thyme') }}" class="bg-white rounded-3xl shadow-lg p-6 hover:scale-105 transition">
+          <img src="{{ url_for('static', filename='northern-plant3.jpg') }}" alt="Thyme" class="rounded-xl mb-4 w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold text-green-700">Thyme</h3>
+          <p class="text-sm text-gray-600">الزعتر</p>
+        </a>
       </div>
     </section>
 
@@ -143,5 +198,4 @@
 
 </body>
 </html>
-
 
