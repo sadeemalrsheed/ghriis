@@ -88,3 +88,7 @@ html, body {
     color: #4e260d;
   }
   
+  main {
+    flex: 1 0 auto;
+  }
+  
