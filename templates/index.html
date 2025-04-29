@@ -6,26 +6,14 @@
     <title>Ghiras</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      * {
-        box-sizing: inherit;
-      }
       body {
         font-family: 'Georgia', serif;
       }
-      img {
-        display: block;
-      }
     </style>
   </head>  
-<body class="bg-green-50 text-gray-800 flex flex-col items-center justify-start">
+<body class="bg-green-50 text-gray-800">
 
-  <header class="py-0 leading-none">
+  <header class="text-center py-0">
     <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo"
     class="mx-auto w-[500px] mb-1" />
   </header>
