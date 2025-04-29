@@ -178,21 +178,20 @@
 
   <!-- JavaScript -->
   <script>
-    function setActive(clickedBtn) {
-      document.querySelectorAll('.region-btn').forEach(btn => {
-        btn.classList.remove('bg-green-600', 'text-white');
-        btn.classList.add('bg-white', 'text-green-700');
-      });
-      clickedBtn.classList.remove('bg-white', 'text-green-700');
-      clickedBtn.classList.add('bg-green-600', 'text-white');
-    }
+  function showRegion(regionId) {
+  document.querySelectorAll('.plant-region').forEach(section => {
+    section.classList.add('hidden');
+  });
 
-    function showRegion(regionId) {
-      document.querySelectorAll('.plant-region').forEach(section => {
-        section.classList.add('hidden');
-      });
-      document.getElementById(regionId).classList.remove('hidden');
-    }
+  const target = document.getElementById(regionId);
+  target.classList.remove('hidden');
+
+  // Smooth scroll to the section
+  setTimeout(() => {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50); // slight delay to make sure it's un-hidden
+}
+
   </script>
 
 </body>
