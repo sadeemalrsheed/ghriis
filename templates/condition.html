@@ -85,7 +85,6 @@
         <div>
           <input type="file" name="hiddenfiles" id="hiddenfiles" multiple hidden>
 
-
           <div class="text-lg mb-6 note-text">
             <p>Note: Maximum total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed.</p>
             <p><a href="#crops-list" class="font-semibold">List of currently supported crops</a></p>
@@ -93,13 +92,11 @@
         </div>
 
         <!-- Predict Now Button -->
-        <!-- Predict Now Button -->
         <div>
-          <button class="bg-[#216b39] hover:bg-[#1b5a30] text-white font-semibold text-xl px-7 py-3 rounded-xl transition duration-300 shadow-md" type="submit" id="submit" onclick="return submit_form();">
-           Predict Now
+          <button class="predict-btn" type="submit" id="submit" onclick="return submit_form();">
+            Predict Now
           </button>        
         </div>
-
         
 
       </form>
@@ -114,5 +111,4 @@
 <script src="{{ url_for('static', filename='main.js') }}" defer></script>
 
 {% endblock %}
-
   
