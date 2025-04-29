@@ -108,24 +108,129 @@
         <h5 class="brown-text mb-4">Supported Crops and Diseases:</h5>
       </div>
 
-      <div class="container custom-bg-color-3 rounded p-4">
+      <div class="container custom-bg-color-3 rounded" style="padding-top: 12px; padding-bottom: 12px;">
         <nav>
-          <div class="nav nav-tabs crops-list-tab" id="nav-tab" role="tablist">
-            {% for crop in ['Apple', 'Bell Pepper', 'Blueberry', 'Cherry', 'Corn (Maize)', 'Grape', 'Orange', 'Peach', 'Potato', 'Raspberry', 'Rice', 'Soybean', 'Squash', 'Strawberry', 'Tomato'] %}
-            <button class="nav-link crops-list-tab rounded" data-bs-toggle="tab" data-bs-target="#nav-{{ crop|lower|replace(' ', '-') }}" type="button" role="tab">
-              {{ crop }}
-            </button>
-            {% endfor %}
-          </div>
+            <div class="nav nav-tabs crops-list-tab" style="border: none; padding-bottom: 12px;" id="nav-tab" role="tablist">
+                <button class="nav-link crops-list-tab rounded" id="nav-apple-tab" data-bs-toggle="tab" data-bs-target="#nav-apple" type="button" role="tab" aria-controls="nav-apple" aria-selected="true">Apple</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-bell-pepper-tab" data-bs-toggle="tab" data-bs-target="#nav-bell-pepper" type="button" role="tab" aria-controls="nav-bell-pepper" aria-selected="false">Bell Pepper</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-blueberry-tab" data-bs-toggle="tab" data-bs-target="#nav-blueberry" type="button" role="tab" aria-controls="nav-blueberry" aria-selected="false">Blueberry</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-cherry-tab" data-bs-toggle="tab" data-bs-target="#nav-cherry" type="button" role="tab" aria-controls="nav-cherry" aria-selected="false">Cherry</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-corn-maize-tab" data-bs-toggle="tab" data-bs-target="#nav-corn-maize" type="button" role="tab" aria-controls="nav-corn-maize" aria-selected="false">Corn (Maize)</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-grape-tab" data-bs-toggle="tab" data-bs-target="#nav-grape" type="button" role="tab" aria-controls="nav-grape" aria-selected="false">Grape</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-orange-tab" data-bs-toggle="tab" data-bs-target="#nav-orange" type="button" role="tab" aria-controls="nav-orange" aria-selected="false">Orange</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-peach-tab" data-bs-toggle="tab" data-bs-target="#nav-peach" type="button" role="tab" aria-controls="nav-peach" aria-selected="false">Peach</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-potato-tab" data-bs-toggle="tab" data-bs-target="#nav-potato" type="button" role="tab" aria-controls="nav-potato" aria-selected="false">Potato</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-raspberry-tab" data-bs-toggle="tab" data-bs-target="#nav-raspberry" type="button" role="tab" aria-controls="nav-raspberry" aria-selected="false">Raspberry</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-rice-tab" data-bs-toggle="tab" data-bs-target="#nav-rice" type="button" role="tab" aria-controls="nav-rice" aria-selected="false">Rice</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-soybean-tab" data-bs-toggle="tab" data-bs-target="#nav-soybean" type="button" role="tab" aria-controls="nav-soybean" aria-selected="false">Soybean</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-squash-tab" data-bs-toggle="tab" data-bs-target="#nav-squash" type="button" role="tab" aria-controls="nav-squash" aria-selected="false">Squash</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-strawberry-tab" data-bs-toggle="tab" data-bs-target="#nav-strawberry" type="button" role="tab" aria-controls="nav-strawberry" aria-selected="false">Strawberry</button>
+                <button class="nav-link crops-list-tab rounded" id="nav-tomato-tab" data-bs-toggle="tab" data-bs-target="#nav-tomato" type="button" role="tab" aria-controls="nav-tomato" aria-selected="false">Tomato</button>
+            </div>
         </nav>
-
-        <div class="tab-content custom-bg-color-4 rounded p-4" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-apple" role="tabpanel">
-            <ul class="brown-text">
-              <li>Apple Scab</li>
-              <li>Black Rot</li>
-              <li>Cedar Rust</li>
-              <li>Healthy</li>
+        <div class="tab-content custom-bg-color-4 rounded" style="padding-bottom: 5px; padding-top: 17px;" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-apple" role="tabpanel" aria-labelledby="nav-apple-tab">
+                <ul class="brown-text">
+                    <li>Apple Scab</li>
+                    <li>Black Rot</li>
+                    <li>Cedar Rust</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-bell-pepper" role="tabpanel" aria-labelledby="nav-bell-pepper-tab">
+                <ul class="brown-text">
+                    <li>Bacterial Spot</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-blueberry" role="tabpanel" aria-labelledby="nav-blueberry-tab">
+                <ul class="brown-text">
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-cherry" role="tabpanel" aria-labelledby="nav-cherry-tab">
+                <ul class="brown-text">
+                    <li>Powdery Mildew</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-corn-maize" role="tabpanel" aria-labelledby="nav-corn-maize-tab">
+                <ul class="brown-text">
+                    <li>Grey Leaf Spot</li>
+                    <li>Common Rust of Maize</li>
+                    <li>Northern Leaf Blight</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-grape" role="tabpanel" aria-labelledby="nav-grape-tab">
+                <ul class="brown-text">
+                    <li>Black Rot</li>
+                    <li>Black Measles (Esca)</li>
+                    <li>Leaf Blight (Isariopsis Leaf Spot)</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-orange" role="tabpanel" aria-labelledby="nav-orange-tab">
+                <ul class="brown-text">
+                    <li>Huanglongbing (Citrus Greening)</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-peach" role="tabpanel" aria-labelledby="nav-peach-tab">
+                <ul class="brown-text">
+                    <li>Bacterial spot</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-potato" role="tabpanel" aria-labelledby="nav-potato-tab">
+                <ul class="brown-text">
+                    <li>Early Blight</li>
+                    <li>Late Blight</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-raspberry" role="tabpanel" aria-labelledby="nav-raspberry-tab">
+                <ul class="brown-text">
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-rice" role="tabpanel" aria-labelledby="nav-rice-tab">
+                <ul class="brown-text">
+                    <li>Brown Spot</li>
+                    <li>Hispa</li>
+                    <li>Leaf Blast</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-soybean" role="tabpanel" aria-labelledby="nav-soybean-tab">
+                <ul class="brown-text">
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-squash" role="tabpanel" aria-labelledby="nav-squash-tab">
+                <ul class="brown-text">
+                    <li>Powdery Mildew</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-strawberry" role="tabpanel" aria-labelledby="nav-strawberry-tab">
+                <ul class="brown-text">
+                    <li>Leaf Scorch</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-tomato" role="tabpanel" aria-labelledby="nav-tomato-tab">
+                <ul class="brown-text">
+                    <li>Bacterial Spot</li>
+                    <li>Early Blight</li>
+                    <li>Late Blight</li>
+                    <li>Leaf Mold</li>
+                    <li>Septoria Leaf Spot</li>
+                    <li>Spider Mites (Two-spotted Spider Mite)</li>
+                    <li>Target Spot</li>
+                    <li>Yellow Leaf Curl Virus</li>
+                    <li>Mosaic Virus</li>
+                    <li>Healthy</li>
+                </ul>
+            </div>
             </ul>
           </div>
         </div>
