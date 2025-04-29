@@ -1,51 +1,114 @@
-<!-- Upload Section -->
-<div class="col justify-content-center pt-4">
-	<h1 class="mb-3 text-4xl font-bold leading-tight tracking-wide" style="color: #1a451f;">
-	  Get Instant & Accurate Crop Disease Detection with Green Glow
-	</h1>
-  
-	<!-- Choose Files Button -->
-	<div class="mb-6" style="max-width: 300px;">
-	  <style>
-		.custom-file-upload {
-		  background-color: #216b39;
-		  color: white;
-		  padding: 10px 20px;
-		  border-radius: 12px;
-		  display: inline-block;
-		  cursor: pointer;
-		  font-weight: 600;
-		  transition: background-color 0.3s;
-		}
-		.custom-file-upload:hover {
-		  background-color: #1b5a30;
-		}
-		#files { display: none; }
-	  </style>
-	  
-	  <label for="files" class="custom-file-upload">Choose Files</label>
-	  <input type="file" id="files" name="files" multiple accept=".jpg, .jpeg, .png" required>
-	</div>
-  
-	<!-- Form -->
-	<form action="/condition" method="POST" enctype="multipart/form-data">
-  
-	  <div>
-		<input type="file" name="hiddenfiles" id="hiddenfiles" multiple hidden>
-  
-		<div class="text-lg mb-6" style="color: #4e260d;">
-		  <p>Note: Maximum total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed.</p>
-		  <p><a href="#crops-list" style="color: #4e260d !important;" class="hover:underline font-semibold">List of currently supported crops</a></p>
-		</div>
-	  </div>
-  
-	  <!-- Predict Now Button -->
-	  <div>
-		<button class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-6 rounded-xl transition text-base" type="submit" id="submit" onclick="return submit_form();">
-		  Predict Now
-		</button>			  
-	  </div>
-  
-	</form>
+{% extends 'base.html' %} 
+{% block title %} Green Glow: Get Instant & Accurate Crop Disease Detection {% endblock %}
+{% block content %}
+
+<style>
+  body {
+    background-color: #f0fdf4;
+  }
+  .main-heading {
+    color: #1a451f;
+  }
+  .note-text,
+  .note-text a {
+    color: #4e260d;
+  }
+  .note-text a:hover {
+    text-decoration: underline;
+  }
+  .predict-btn {
+    background-color: #216b39;
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    border: none;
+  }
+  .predict-btn:hover {
+    background-color: #1b5a30;
+  }
+</style>
+
+{% with messages = get_flashed_messages() %}  
+  {% if messages %}  
+    {% for message in messages %}
+      <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 text-center" role="alert">
+        <p class="font-semibold">{{ message }}</p>
+      </div>
+    {% endfor %}  
+  {% endif %}  
+{% endwith %}
+
+<div class="text-center" role="alert" id="alert"></div>
+
+<div class="container px-4 px-md-3 py-8">
+  <div class="row align-items-lg-center align-items-md-center">
+
+    <!-- Logo -->
+    <div class="col-9 mx-auto col-md-6 order-md-4 col-lg-5">
+      <img src="{{ url_for('static', filename='Agent-Crop-1000x1000.png') }}" alt="Agent Crop Logo" height="500" width="500" class="img-fluid">
+    </div>
+
+    <!-- Upload Section -->
+    <div class="col justify-content-center pt-4">
+      <h1 class="mb-3 text-4xl font-bold leading-tight tracking-wide main-heading">
+        Get Instant & Accurate Crop Disease Detection with Green Glow
+      </h1>
+
+      <!-- Choose Files Button -->
+      <div class="mb-6" style="max-width: 300px;">
+        <style>
+          .custom-file-upload {
+            background-color: #216b39;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+          }
+          .custom-file-upload:hover {
+            background-color: #1b5a30;
+          }
+          #files { display: none; }
+        </style>
+        
+        <label for="files" class="custom-file-upload">Choose Files</label>
+        <input type="file" id="files" name="files" multiple accept=".jpg, .jpeg, .png" required>
+      </div>
+
+      <!-- Form -->
+      <form action="/condition" method="POST" enctype="multipart/form-data">
+
+        <div>
+          <input type="file" name="hiddenfiles" id="hiddenfiles" multiple hidden>
+
+          <div class="text-lg mb-6 note-text">
+            <p>Note: Maximum total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed.</p>
+            <p><a href="#crops-list" class="font-semibold">List of currently supported crops</a></p>
+          </div>
+        </div>
+
+        <!-- Predict Now Button -->
+        <div>
+          <button class="predict-btn" type="submit" id="submit" onclick="return submit_form();">
+            Predict Now
+          </button>        
+        </div>
+
+      </form>
+
+    </div>
   </div>
+
+  <!-- Image Preview -->
+  <div id="image_preview" class="row mt-5 justify-content-center"></div>
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
+{% endblock %}
+
   
