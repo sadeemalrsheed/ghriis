@@ -1,68 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ghiras</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: 'Georgia', serif;
-      }
-    </style>
-  </head>  
-<body class="bg-green-50 text-gray-800">
+<body class="bg-green-50 text-gray-800 min-h-screen flex flex-col">
 
-  <header class="text-center py-0">
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo"
-    class="mx-auto w-[460px] mb-7" />
-  </header>
+  <main class="flex-grow">
+    <header class="text-center py-0">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo"
+      class="mx-auto w-[460px] mb-7" />
+    </header>
 
-  <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-8">
-
-    <!-- Box 1 -->
-    <a href="http://127.0.0.1:5000" target="_blank"
-       class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
-      <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
-        Device Status Monitor
-      </div>
-    </a>
-  
-    <!-- Box 2 -->
-    <a href="/condition" target="_blank"
-       class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
-      <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
-        Plant Health Overview
-      </div>
-    </a>
-  
-    <!-- Box 3 -->
-    <a href="{{ url_for('show_plants') }}" target="_blank"
-       class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
-      <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
-        Plant Recommendations
-      </div>
-    </a>
-  
-  </section>
-  
- <!-- Footer -->
-<!-- Footer -->
-  <footer class="w-full py-4 px-6 text-center mt-20" style="background-color: #216b39;">
-  <h3 class="text-xl font-bold text-white mb-2">Contact Us</h3> <!-- mb-2 instead of mb-4 -->
-  <div class="space-y-1">
-    <p class="text-lg text-white">
-      Email: <a href="mailto:ghiras.saudi@gmail.com" class="text-white hover:underline">
-        ghiras.saudi@gmail.com
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-8">
+      <!-- Box 1 -->
+      <a href="http://127.0.0.1:5000" target="_blank"
+         class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+        <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
+          Device Status Monitor
+        </div>
       </a>
-    </p>
-    <p class="text-lg text-white">
-      Phone: <a href="tel:0558165619" class="text-white hover:underline">
-        0558165619
+
+      <!-- Box 2 -->
+      <a href="/condition" target="_blank"
+         class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+        <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
+          Plant Health Overview
+        </div>
       </a>
-    </p>
-  </div>
+
+      <!-- Box 3 -->
+      <a href="{{ url_for('show_plants') }}" target="_blank"
+         class="bg-white shadow-lg rounded-3xl p-10 h-44 flex items-center justify-center text-center hover:bg-green-100 transition duration-300 ease-in-out">
+        <div class="flex flex-col justify-center items-center text-green-700 font-bold text-3xl leading-snug text-center">
+          Plant Recommendations
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-4 px-6 text-center" style="background-color: #216b39;">
+    <h3 class="text-xl font-bold text-white mb-2">Contact Us</h3>
+    <div class="space-y-1">
+      <p class="text-lg text-white">
+        Email: <a href="mailto:ghiras.saudi@gmail.com" class="text-white hover:underline">
+          ghiras.saudi@gmail.com
+        </a>
+      </p>
+      <p class="text-lg text-white">
+        Phone: <a href="tel:0558165619" class="text-white hover:underline">
+          0558165619
+        </a>
+      </p>
+    </div>
   </footer>
 
 </body>
-</html>
+
