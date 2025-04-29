@@ -17,21 +17,22 @@
 <!-- Main Section -->
 <section class="text-center py-12 px-4 max-w-7xl mx-auto">
   <div class="grid md:grid-cols-2 gap-12 items-center">
-    
-    <!-- Left Image -->
-    <div>
-      <img src="{{ url_for('static', filename='Agent-Crop-1000x1000.png') }}" alt="Agent Crop Logo" class="w-full max-w-sm mx-auto rounded-2xl shadow-lg" />
+
+    <!-- Left Image (smaller size) -->
+    <div class="flex justify-center">
+      <img src="{{ url_for('static', filename='Agent-Crop-1000x1000.png') }}" alt="Agent Crop Logo" class="w-80 h-80 object-contain rounded-2xl shadow-lg" />
     </div>
 
     <!-- Right Content -->
-    <div>
-      <h1 class="text-4xl font-bold text-green-700 mb-6 leading-tight tracking-wide">
+    <div class="text-center md:text-left space-y-6">
+
+      <h1 class="text-4xl font-bold text-green-700 leading-tight tracking-wide">
         Get Instant & Accurate Crop Disease Detection with Green Glow
       </h1>
 
-      <!-- Upload Button -->
       <form action="/condition" method="POST" enctype="multipart/form-data" class="space-y-6">
 
+        <!-- Choose Files Button -->
         <div>
           <label for="files" class="cursor-pointer bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-2xl shadow-md transition inline-block">
             Choose Files
@@ -40,12 +41,13 @@
           <input type="file" name="hiddenfiles" id="hiddenfiles" multiple hidden>
         </div>
 
+        <!-- Note and Link -->
         <div class="text-gray-700 text-lg space-y-2">
           <p>Note: Maximum total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed.</p>
           <p><a href="#crops-list" class="text-green-700 hover:underline font-semibold">List of currently supported crops</a></p>
         </div>
 
-        <!-- Submit Button -->
+        <!-- Predict Now Button -->
         <div>
           <button type="submit" id="submit" onclick="return submit_form();" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-2xl shadow-md transition">
             Predict Now
@@ -53,6 +55,7 @@
         </div>
 
       </form>
+
     </div>
 
   </div>
